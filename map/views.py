@@ -1,3 +1,12 @@
-from django.shortcuts import render
+from rest_framework import viewsets
 
-# Create your views here.
+from map import models as map_models
+from map import serializers as map_serializers
+
+
+class BusinessViewSet(viewsets.ModelViewSet):
+    serializer_class = map_serializers.BusinessSerializer
+    queryset = map_models.Business.objects.all()
+
+    def perform_create(self, serializer):
+        serializer.save()

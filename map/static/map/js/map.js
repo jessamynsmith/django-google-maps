@@ -66,6 +66,26 @@ var initMap = function (position) {
           infowindow.open(map, marker);
         };
       })(marker, i));
+
+      $.ajax({
+        method: "post",
+        url: '/api/v1/businesses/',
+        contentType: 'application/json',
+        data: JSON.stringify({
+          title: business.name,
+          url: business.url,
+          position: {
+            "type": "Point",
+            "coordinates": [
+                business.location.coordinate.latitude,
+                business.location.coordinate.longitude
+            ]
+          }
+        }),
+        beforeSend: function(jqXHR, settings) {
+            jqXHR.setRequestHeader("X-CSRFToken", Cookies.get('csrftoken'));
+        }
+      });
     }
   }).fail(function (error) {
     console.log("Unable to access yelp");

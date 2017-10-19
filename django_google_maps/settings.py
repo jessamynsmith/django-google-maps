@@ -17,7 +17,6 @@ import dj_database_url
 PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
 BASE_DIR = os.path.dirname(PROJECT_DIR)
 
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -28,11 +27,10 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
 # Use env setting if available, otherwise make debug false
 DEBUG = bool(int(os.environ.get('DJANGO_DEBUG', '0')))
 
-ALLOWED_HOSTS = ['127.0.0.1:8000', 'django-google-maps.herokuapp.com']
+ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'django-google-maps.herokuapp.com']
 
 SECURE_SSL_REDIRECT = bool(int(os.environ.get('DJANGO_ENABLE_SSL', '1')))
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
 
 # Application definition
 
@@ -43,6 +41,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.gis',
+    'rest_framework',
+    'rest_framework_gis',
     'map',
 ]
 
@@ -72,13 +73,13 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'django_google_maps.context_processors.global_settings',
             ],
         },
     },
 ]
 
 WSGI_APPLICATION = 'django_google_maps.wsgi.application'
-
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
@@ -91,7 +92,6 @@ DATABASES = {
 }
 DATABASES['default'].update(dj_database_url.config(conn_max_age=500))
 DATABASES['default']['ENGINE'] = 'django.contrib.gis.db.backends.postgis'
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -111,7 +111,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -125,7 +124,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
 
@@ -136,6 +134,7 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
 
+GOOGLE_MAPS_API_KEY = 'AIzaSyDcrj0tFoCnUn9BCWalr4Xbz4uH1fGjt7Q'
 
 # GDAL config for heroku
 if 'GEOS_LIBRARY_PATH' in os.environ:

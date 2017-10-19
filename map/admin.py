@@ -1,3 +1,6 @@
+from django.contrib.gis import admin as gis_admin
 from django.contrib import admin
+from map import models as map_models
 
-# Register your models here.
+
+admin.site.register(map_models.Business, gis_admin.GeoModelAdmin)
