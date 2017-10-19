@@ -80,6 +80,8 @@ Create application (note the geo buildpack will only work on cedar-14):
 
     heroku create --stack cedar-14 <app_name>
     
+Be sure to add your heroku app to ALLOWED_HOSTS in settings.py
+    
 Add postgresql addon:
     
     heroku addons:add heroku-postgresql
