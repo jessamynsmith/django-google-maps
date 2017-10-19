@@ -1,0 +1,28 @@
+body {
+    margin: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.small {
+    font-size: 12px;
+    line-height: 10px;
+}
+
+.center {
+    width: 100%;
+    text-align: center;
+}
+
+.content {
+    margin-top: 10px;
+}
+
+.footer {
+    padding-top: 12px;
+}
+
+@media (max-width: 639px) {
+    .mobile_hidden {
+        display: none;
+    }
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  {% load static %}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="{% static 'css/base.css' %}" type="text/css" media="screen">
+
+  <title>{% block title %}{% endblock %}</title>
+
+  {% block extra_head %}{% endblock %}
+</head>
+<body>
+
+<div class="content">
+  {% block content %}{% endblock %}
+</div>
+
+{% block footer %}
+  <div class="footer">
+    <div class="center">
+      <div>
+        <span class="mobile_hidden">
+          <a target="_blank" href="https://github.com/jessamynsmith/django-google-maps">Source code</a> here.
+            <br>
+            Like my work? Tip me! <a target="_blank" href="https://www.paypal.me/jessamynsmith">https://www.paypal.me/jessamynsmith</a>
+        </span>
+      </div>
+    </div>
+  </div>
+{% endblock %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+{% block extra_js %}{% endblock %}
+
+</body>
+</html>

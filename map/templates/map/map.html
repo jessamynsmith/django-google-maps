@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="{% static 'map/css/map.css' %}" type="text/css">
+{% endblock extra_head %}
+
+{% block content %}
+
+    <h2 class="center">Example Map</h2>
+
+    <div id="map"></div>
+
+{% endblock content %}
+
+{% block extra_js %}
+
+<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcrj0tFoCnUn9BCWalr4Xbz4uH1fGjt7Q&callback=initMap"></script>
+
+<script type="text/javascript" src="{% static 'map/js/map.js' %}"></script>
+
+{% endblock extra_js %}
