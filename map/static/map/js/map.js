@@ -61,7 +61,7 @@ var initMap = function (position) {
 
       google.maps.event.addListener(marker, 'click', (function (marker, key) {
         return function () {
-          var content = '<div><a href="' + marker.url + '">' + marker.title + '</a></div>';
+          var content = '<div><a target="_blank" href="' + marker.url + '">' + marker.title + '</a></div>';
           infowindow.setContent(content);
           infowindow.open(map, marker);
         };
