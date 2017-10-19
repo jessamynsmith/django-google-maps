@@ -1,5 +1,11 @@
 #map {
     margin: auto;
-    height: 400px;
+    height: 450px;
     width: 80%;
+}
+
+@media (max-width: 639px) {
+    #map {
+        width: 100%;
+    }
 }
