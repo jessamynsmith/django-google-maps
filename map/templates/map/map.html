@@ -16,8 +16,9 @@
 
 {% block extra_js %}
 
-<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcrj0tFoCnUn9BCWalr4Xbz4uH1fGjt7Q&callback=initMap"></script>
+    <!-- Must be before google maps include, as it contains initMap -->
+    <script type="text/javascript" src="{% static 'map/js/map.js' %}"></script>
 
-<script type="text/javascript" src="{% static 'map/js/map.js' %}"></script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDcrj0tFoCnUn9BCWalr4Xbz4uH1fGjt7Q&callback=initMap"></script>
 
 {% endblock extra_js %}
