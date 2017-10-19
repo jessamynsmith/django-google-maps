@@ -2,6 +2,10 @@ import django.contrib.gis.db.models as gis_models
 from django.db import models
 
 
+# TODO maybe implement a record of search queries and only go to yelp for new queries
+# This will involve making yelp queries from django rather than having the front end
+# call the angular app on heroku
+
 class Business(models.Model):
     title = models.CharField(max_length=255)
     url = models.URLField()
