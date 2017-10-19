@@ -1,4 +1,4 @@
-#django-google-maps
+# django-google-maps
 
 This is an example of a heroku-deployable app using postgis and google maps.
 https://django-google-maps.herokuapp.com/
@@ -7,7 +7,7 @@ https://django-google-maps.herokuapp.com/
 Like my work? Tip me! https://www.paypal.me/jessamynsmith
 
 
-###Development
+### Development
 
 Fork the project on github and git clone your fork, e.g.:
 
@@ -30,7 +30,7 @@ Optional environment variables, generally only required in production:
     
 You can add the exporting of environment variables to the virtualenv activate script so they are always available.
 
-#####Database
+##### Database
 
 This app requires PostgreSQL. I recommend installing using a package manager (homebrew on OSX).
 
@@ -48,7 +48,7 @@ Set up db:
     python manage.py migrate
 
 
-#####Testing
+##### Testing
 
 Run tests:
 
@@ -71,7 +71,7 @@ Lint JavaScript:
     ./node_modules/jshint/bin/jshint */static/*/js
 
 
-###Continuous Integration and Deployment
+### Continuous Integration and Deployment
 
 
 This project is already set up for deployment to Heroku.
