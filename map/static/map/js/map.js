@@ -48,7 +48,6 @@ var initMap = function (position) {
   }).done(function (data) {
     for (var i = 0; i < data.businesses.length; i++) {
       var business = data.businesses[i];
-      console.log(business);
       var marker = new google.maps.Marker({
         id: i,
         title: business.name,
