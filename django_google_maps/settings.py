@@ -25,10 +25,13 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
                             '=(!xjg5qu#ky+ota171po)_nfwdi6q1rvuyn5(l*o084^1)bcv')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Use env setting if available, otherwise make debug false
+DEBUG = bool(int(os.environ.get('DJANGO_DEBUG', '0')))
 
 ALLOWED_HOSTS = ['127.0.0.1:8000', 'django-google-maps.herokuapp.com']
+
+SECURE_SSL_REDIRECT = bool(int(os.environ.get('DJANGO_ENABLE_SSL', '1')))
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 
 # Application definition
