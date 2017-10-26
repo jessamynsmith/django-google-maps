@@ -9,6 +9,8 @@ var defaultPosition = {
 
 var populateMap = function (position) {
 
+  $('#geolocation').hide();
+
   var infowindow = new google.maps.InfoWindow({
     content: "hello"
   });
