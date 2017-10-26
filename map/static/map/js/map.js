@@ -3,8 +3,10 @@
 
 // Default to downtown Toronto
 var defaultPosition = {
-  latitude: 43.6722780,
-  longitude: -79.3745125
+  coords: {
+    latitude: 43.6722780,
+    longitude: -79.3745125
+  }
 };
 
 var populateMap = function (position) {
@@ -16,10 +18,7 @@ var populateMap = function (position) {
   });
 
   if (!position) {
-
-    position = {
-      coords: defaultPosition
-    };
+    position = defaultPosition;
   }
 
   var map = new google.maps.Map(document.getElementById('map'), {
