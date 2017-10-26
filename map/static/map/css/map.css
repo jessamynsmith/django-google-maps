@@ -1,6 +1,16 @@
-#geolocation {
+h3 {
     text-align: center;
     padding-top: 50px;
+}
+
+#id_search_form {
+    margin: auto;
+    width: 270px;
+    padding-bottom: 20px;
+}
+
+#id_search_form input[type="text"] {
+    width: 200px;
 }
 
 #map {
