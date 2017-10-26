@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.gis.geos import Point
 from django.http import JsonResponse
-from rest_framework import viewsets
+from rest_framework import permissions, viewsets
 from rest_framework.views import APIView
 from yelpapi import YelpAPI
 
@@ -15,6 +15,7 @@ class SearchViewSet(viewsets.ModelViewSet):
 
 
 class YelpView(APIView):
+    permission_classes = (permissions.AllowAny,)
 
     def get(self, request, *args, **kwargs):
         yelp_api = YelpAPI(settings.YELP_CLIENT_ID, settings.YELP_CLIENT_SECRET)
