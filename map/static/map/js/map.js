@@ -7,7 +7,7 @@ var defaultPosition = {
   longitude: -79.3745125
 };
 
-var initMap = function (position) {
+var populateMap = function (position) {
 
   var infowindow = new google.maps.InfoWindow({
     content: "hello"
@@ -38,12 +38,13 @@ var initMap = function (position) {
 
   $.ajax({
     method: "get",
-    url: 'https://angular-google-maps-example.herokuapp.com/api/v1/yelp/search',
+    url: '/api/v1/yelp/search/',
     data: {
       limit: 10,
-      radius_filter: 500,
-      sort: 1,
-      ll: [position.coords.latitude, position.coords.longitude].join()
+      radius: 200,
+      sort: 'distance',
+      latitude: position.coords.latitude,
+      longitude: position.coords.longitude
     }
   }).done(function (data) {
     for (var i = 0; i < data.businesses.length; i++) {
@@ -53,8 +54,8 @@ var initMap = function (position) {
         title: business.name,
         url: business.url,
         position: {
-          lat: business.location.coordinate.latitude,
-          lng: business.location.coordinate.longitude
+          lat: business.coordinates.latitude,
+          lng: business.coordinates.longitude
         },
         map: map
       });
@@ -66,26 +67,6 @@ var initMap = function (position) {
           infowindow.open(map, marker);
         };
       })(marker, i));
-
-      $.ajax({
-        method: "post",
-        url: '/api/v1/businesses/',
-        contentType: 'application/json',
-        data: JSON.stringify({
-          title: business.name,
-          url: business.url,
-          position: {
-            "type": "Point",
-            "coordinates": [
-                business.location.coordinate.latitude,
-                business.location.coordinate.longitude
-            ]
-          }
-        }),
-        beforeSend: function(jqXHR, settings) {
-            jqXHR.setRequestHeader("X-CSRFToken", Cookies.get('csrftoken'));
-        }
-      });
     }
   }).fail(function (error) {
     console.log("Unable to access yelp");
@@ -94,10 +75,25 @@ var initMap = function (position) {
 
 };
 
-function getLocation() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(initMap);
-  }
-}
 
-getLocation();
+var geolocationFail = function() {
+  populateMap(defaultPosition);
+};
+
+
+var initMap = function() {
+  if (navigator.geolocation) {
+    var location_timeout = setTimeout(geolocationFail, 5000);
+
+    navigator.geolocation.getCurrentPosition(function(position) {
+      clearTimeout(location_timeout);
+      populateMap(position);
+    }, function (error) {
+        clearTimeout(location_timeout);
+        geolocationFail();
+    });
+  } else {
+    // Fallback for no geolocation
+    geolocationFail();
+  }
+};

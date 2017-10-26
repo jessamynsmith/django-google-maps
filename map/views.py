@@ -1,9 +1,32 @@
+from django.conf import settings
+from django.contrib.gis.geos import Point
+from django.http import JsonResponse
 from rest_framework import viewsets
+from rest_framework.views import APIView
+from yelpapi import YelpAPI
 
 from map import models as map_models
 from map import serializers as map_serializers
 
 
-class BusinessViewSet(viewsets.ModelViewSet):
-    serializer_class = map_serializers.BusinessSerializer
-    queryset = map_models.Business.objects.all()
+class SearchViewSet(viewsets.ModelViewSet):
+    serializer_class = map_serializers.SearchSerializer
+    queryset = map_models.Search.objects.all()
+
+
+class YelpView(APIView):
+
+    def get(self, request, *args, **kwargs):
+        yelp_api = YelpAPI(settings.YELP_CLIENT_ID, settings.YELP_CLIENT_SECRET)
+
+        search_results = yelp_api.search_query(**self.request.GET)
+
+        term = request.GET.get('term')
+        longitude = float(request.GET.get('longitude'))
+        latitude = float(request.GET.get('latitude'))
+        results_count = search_results['total']
+        map_models.Search.objects.create(term=term,
+                                         position=Point(longitude, latitude),
+                                         results_count=results_count)
+
+        return JsonResponse(search_results)

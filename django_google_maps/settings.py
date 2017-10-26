@@ -134,7 +134,10 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
 
-GOOGLE_MAPS_API_KEY = 'AIzaSyDcrj0tFoCnUn9BCWalr4Xbz4uH1fGjt7Q'
+YELP_CLIENT_ID = os.environ.get('YELP_CLIENT_ID')
+YELP_CLIENT_SECRET = os.environ.get('YELP_CLIENT_SECRET')
+
+GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 
 # GDAL config for heroku
 if 'GEOS_LIBRARY_PATH' in os.environ:

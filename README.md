@@ -18,6 +18,17 @@ to be the actual path to python3 on your system.
 
     mkvirtualenv django-google-maps --python=/path/to/python3
     pip install -r requirements/development.txt
+    
+Sign up for the Yelp Fusion API and create an app as directed: https://www.yelp.com/developers/documentation/v3/authentication
+Set environment variables for your Yelp app:
+
+    export YELP_CLIENT_ID=<VALUE_FROM_YELP>
+    export YELP_CLIENT_SECRET=<VALUE_FROM_YELP>
+    
+Sign up for a Google maps and get an API key: https://developers.google.com/maps/documentation/javascript/get-api-key
+Set environment variable for Google maps:
+
+    export GOOGLE_MAPS_API_KEY=<VALUE_FROM_GOOGLE>
 
 Set environment variables as desired. Recommended dev settings:
 
@@ -95,6 +106,12 @@ Add Heroku buildpacks:
 
     heroku buildpacks:set -i 1 https://github.com/cyberdelia/heroku-geo-buildpack.git
     heroku buildpacks:set -i 2 heroku/python
+    
+Set environment variables:
+
+    heroku config:set YELP_CLIENT_ID=<VALUE_FROM_YELP>
+    heroku config:set YELP_CLIENT_SECRET=<VALUE_FROM_YELP>
+    heroku config:set GOOGLE_MAPS_API_KEY=<VALUE_FROM_GOOGLE>
 
 You can deploy manually using:
 
