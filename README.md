@@ -22,9 +22,8 @@ to be the actual path to python3 on your system.
 Sign up for the Yelp Fusion API and create an app as directed: https://www.yelp.com/developers/documentation/v3/authentication
 Set environment variables for your Yelp app:
 
-    export YELP_CLIENT_ID=<VALUE_FROM_YELP>
-    export YELP_CLIENT_SECRET=<VALUE_FROM_YELP>
-    
+    export YELP_API_KEY=<VALUE_FROM_YELP>
+
 Sign up for a Google maps and get an API key: https://developers.google.com/maps/documentation/javascript/get-api-key
 Set environment variable for Google maps:
 
@@ -109,8 +108,7 @@ Add Heroku buildpacks:
     
 Set environment variables:
 
-    heroku config:set YELP_CLIENT_ID=<VALUE_FROM_YELP>
-    heroku config:set YELP_CLIENT_SECRET=<VALUE_FROM_YELP>
+    heroku config:set YELP_API_KEY=<VALUE_FROM_YELP>
     heroku config:set GOOGLE_MAPS_API_KEY=<VALUE_FROM_GOOGLE>
 
 You can deploy manually using:

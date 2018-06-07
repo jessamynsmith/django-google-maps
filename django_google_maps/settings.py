@@ -145,8 +145,7 @@ STATICFILES_DIRS = (
     os.path.join(PROJECT_DIR, 'static'),
 )
 
-YELP_CLIENT_ID = os.environ.get('YELP_CLIENT_ID')
-YELP_CLIENT_SECRET = os.environ.get('YELP_CLIENT_SECRET')
+YELP_API_KEY = os.environ.get('YELP_API_KEY')
 
 GOOGLE_MAPS_API_KEY = os.environ.get('GOOGLE_MAPS_API_KEY')
 

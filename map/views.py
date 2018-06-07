@@ -18,7 +18,7 @@ class YelpView(APIView):
     permission_classes = (permissions.AllowAny,)
 
     def get(self, request, *args, **kwargs):
-        yelp_api = YelpAPI(settings.YELP_CLIENT_ID, settings.YELP_CLIENT_SECRET)
+        yelp_api = YelpAPI(settings.YELP_API_KEY)
 
         search_results = yelp_api.search_query(**self.request.GET)
 
