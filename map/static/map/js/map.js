@@ -1,7 +1,6 @@
 "use strict";
 
 
-var position = null;
 var map = null;
 var infowindow = null;
 var markers = [];
@@ -71,7 +70,7 @@ var populateMap = function (geoPosition, term) {
     content: "hello"
   });
 
-  position = geoPosition;
+  var position = geoPosition;
   if (!position) {
     position = defaultPosition;
   }
@@ -131,6 +130,13 @@ var clearMarkers = function(markers) {
 $('#id_search_form').on('submit', function(event) {
   event.preventDefault();
   clearMarkers(markers);
+  var center = map.getCenter();
+  var position = {
+    coords: {
+      latitude: center.lat(),
+      longitude: center.lng()
+    }
+  };
   yelpSearch(map, infowindow, position, $('#id_term').val());
 });
 
