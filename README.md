@@ -88,7 +88,7 @@ This project is already set up for deployment to Heroku.
 
 Create application (note the geo buildpack will only work on cedar-14):
 
-    heroku create --stack cedar-14 <app_name>
+    heroku create --stack heroku-18 <app_name>
     
 Be sure to add your heroku app to ALLOWED_HOSTS in settings.py
     
@@ -101,13 +101,9 @@ Enable extension in database:
     heroku pg:psql
     create extension postgis;
     
-Add Heroku buildpacks:
-
-    heroku buildpacks:set -i 1 https://github.com/cyberdelia/heroku-geo-buildpack.git
-    heroku buildpacks:set -i 2 heroku/python
-    
 Set environment variables:
 
+    heroku config:set BUILD_WITH_GEO_LIBRARIES=1 # Required to enable GDAL in python buildpack
     heroku config:set YELP_API_KEY=<VALUE_FROM_YELP>
     heroku config:set GOOGLE_MAPS_API_KEY=<VALUE_FROM_GOOGLE>
 
