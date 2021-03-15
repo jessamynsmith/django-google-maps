@@ -42,7 +42,7 @@ You can add the exporting of environment variables to the virtualenv activate sc
 
 ##### Database
 
-This app requires PostgreSQL. I recommend installing using a package manager (homebrew on OSX).
+This app requires PostgreSQL and PostGIS. I recommend installing using a package manager (homebrew on OSX).
 
 Create a database:
 
@@ -52,6 +52,10 @@ Enable the postgis extension:
 
     psql django-google-maps
     create extension postgis;
+    
+You will need export a DATABASE_URL environment variable appropriate to your system, e.g.:
+
+    export DATABASE_URL=postgis://<username>:<password>@127.0.0.1:5432/django-google-maps
 
 Set up db:
 
