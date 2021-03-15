@@ -6,7 +6,7 @@ from map import views as map_views
 
 
 router = routers.DefaultRouter()
-router.register(r'searches', map_views.SearchViewSet, base_name='searches')
+router.register(r'searches', map_views.SearchViewSet, basename='searches')
 
 
 urlpatterns = [

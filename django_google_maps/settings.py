@@ -25,11 +25,11 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY',
                             '=(!xjg5qu#ky+ota171po)_nfwdi6q1rvuyn5(l*o084^1)bcv')
 
 # Use env setting if available, otherwise make debug false
-DEBUG = bool(int(os.environ.get('DJANGO_DEBUG', '0')))
+DEBUG = bool(int(os.environ.get('DJANGO_DEBUG', '1')))
 
 ALLOWED_HOSTS = ['localhost', '127.0.0.1', 'django-google-maps.herokuapp.com']
 
-SECURE_SSL_REDIRECT = bool(int(os.environ.get('DJANGO_ENABLE_SSL', '1')))
+SECURE_SSL_REDIRECT = bool(int(os.environ.get('DJANGO_ENABLE_SSL', '0')))
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 # Application definition
