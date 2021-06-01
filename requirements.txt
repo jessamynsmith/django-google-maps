@@ -12,6 +12,6 @@ pytz==2017.2
 requests==2.20.0
 requests-oauthlib==0.8.0
 sqlparse==0.4.1
-urllib3==1.24.2
+urllib3==1.26.5
 whitenoise==3.3.1
 yelpapi==2.2.2
